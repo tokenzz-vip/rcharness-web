@@ -101,7 +101,9 @@
   .site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line); }
   .header-inner { height: 82px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
   .brand { display: flex; align-items: center; gap: var(--space-2); font-size: 21px; letter-spacing: -.045em; font-weight: 700; white-space: nowrap; }.brand img { flex-shrink: 0; }.brand-dot { color: var(--accent); }
-  .desktop-nav { display: flex; gap: var(--space-8); font-size: 12px; color: var(--muted); font-weight: 500; }.desktop-nav a:hover, .site-footer nav a:hover { color: var(--accent); }
+  .desktop-nav { display: flex; align-items: center; gap: var(--space-8); font-size: 12px; color: var(--muted); font-weight: 500; }.desktop-nav a:hover, .site-footer nav a:hover { color: var(--accent); }
+  .tokenzz-link { color: color-mix(in srgb, var(--muted) 60%, var(--accent-ink)); font-size: 17px; font-weight: 600; line-height: 1.5; letter-spacing: -.025em; white-space: nowrap; transition: color .2s; }
+  .mobile-nav .tokenzz-link:hover { color: var(--accent); }
   .header-actions { display: flex; gap: var(--space-4); align-items: center; }.github-link { color: var(--muted); }.github-link svg { width: 20px; height: 20px; fill: currentColor; stroke: none; }.github-link:hover { color: var(--ink); }.theme-toggle { color: var(--muted); }.theme-toggle svg { width: 17px; height: 17px; }.sun-icon { display: none; }[data-theme="dark"] .sun-icon { display: block; }[data-theme="dark"] .moon-icon { display: none; }
   .menu-toggle { display: none; }.mobile-nav { padding: var(--space-3) var(--space-6) var(--space-6); border-top: 1px solid var(--line); }.mobile-nav a { display: block; padding: var(--space-3); }
   .hero { padding-top: 100px; padding-bottom: 90px; display: grid; grid-template-columns: .92fr 1.08fr; min-height: 680px; gap: var(--space-10); align-items: center; }

@@ -9,7 +9,8 @@
   function syncProductImages() {
     const suffix = root.dataset.theme === 'dark' ? '-dark' : '';
     document.querySelectorAll('img[data-product-screen]').forEach(img => {
-      const source = `assets/${img.dataset.productScreen}${suffix}.webp?v=current-ui`;
+      const cacheKey = img.dataset.productScreen === 'about' ? 'product-info' : 'current-ui';
+      const source = `assets/${img.dataset.productScreen}${suffix}.webp?v=${cacheKey}`;
       if (img.getAttribute('src') !== source) img.src = source;
     });
   }
@@ -82,7 +83,7 @@
     macros: { title: '组合动作', caption: '把重复的步骤，变成一次按下。', alt: '按顺序编辑本机动作和步骤等待时间' },
     phrases: { title: '常用语', caption: '常用的表达，保存后就能绑定到按键。', alt: '从按键页进入的本地常用语管理，支持新建、编辑和复制' },
     connection: { title: '连接与语音', caption: '从连接状态，到语音输出，一目了然。', alt: '遥控器连接、麦克风组件、音频输出与增益设置' },
-    about: { title: '设置', caption: '全局按键、权限与偏好，集中管理。', alt: '应用版本、全局按键、系统权限、配置导入导出与启动偏好' },
+    about: { title: '设置', caption: '全局按键、权限与偏好，集中管理。', alt: '全局按键、系统权限、配置导入导出与启动偏好' },
     statistics: { title: '使用统计', caption: '看见每一次操作，为工作流多一点了解。', alt: '本机按键次数、语音时长与最近七天统计' },
   };
   const tabs = [...document.querySelectorAll('[data-screen]')];
