@@ -1,0 +1,79 @@
+@layer sections {
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+  .desktop-nav a[aria-current="page"], .mobile-nav a[aria-current="page"] { color: var(--accent-ink); font-weight: 650; }
+  .recommendations-page { padding-block: var(--space-16) var(--space-20); }
+  .recommendations-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-8); }
+  .recommendations-heading h1 { font-size: 36px; }
+  .recommendations-heading p { margin-top: var(--space-3); color: var(--muted); }
+  .recommendation-filters { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .recommendation-filters button { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: var(--space-2) var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--bg); font-size: 12px; transition: background .2s, border-color .2s; }
+  .recommendation-filters button:hover { background: var(--surface); }
+  .recommendation-filters button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink); }
+  .recommendation-filters span { opacity: .6; font-size: 10px; }
+  .recommendation-layout { display: grid; grid-template-columns: minmax(0, 2.65fr) minmax(0, 1fr); gap: var(--space-6); align-items: stretch; }
+  .recommendation-group { display: flex; flex-direction: column; min-width: 0; }
+  .recommendation-group > h2 { font-size: 18px; letter-spacing: -.025em; margin-bottom: var(--space-4); }
+  .hardware-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); flex: 1; }
+  .recommendation-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+  .hardware-card { display: flex; min-height: 266px; }
+  .hardware-image { width: 94px; flex: 0 0 94px; display: flex; align-items: center; justify-content: center; padding: var(--space-4) var(--space-2); background: var(--surface); }
+  .hardware-image img { width: auto; height: 224px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 5px 5px rgba(0, 0, 0, .08)); }
+  .recommendation-body { min-width: 0; padding: var(--space-5); }
+  .recommendation-body h3 { font-size: 16px; line-height: 1.5; letter-spacing: -.025em; overflow-wrap: anywhere; }
+  .recommendation-model { display: block; margin-top: var(--space-1); color: var(--subtle); font-size: 10px; letter-spacing: .05em; }
+  .recommendation-body ul { color: var(--muted); margin: var(--space-3) 0 0; padding-left: var(--space-4); font-size: 13px; line-height: 1.9; }
+  .recommendation-body li + li { margin-top: var(--space-1); }
+  .software-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); flex: 1; }
+  .software-card { display: flex; flex-direction: column; }
+  .software-card .recommendation-body { display: flex; flex-direction: column; flex: 1; }
+  .featured-software { grid-column: 1 / -1; }
+  .software-image { display: grid; place-items: center; padding: var(--space-5); background: var(--surface); }
+  .software-image img { width: 76px; height: 76px; border-radius: var(--radius); }
+  .software-tagline { font-size: 27px; line-height: 1.4; font-weight: 650; letter-spacing: -.04em; margin-top: var(--space-2); }
+  .software-card .recommendation-body > p:not(.software-tagline) { color: var(--muted); font-size: 12px; margin-top: var(--space-2); }
+  .software-card:not(.featured-software) .recommendation-body { padding: var(--space-3); }
+  .software-card:not(.featured-software) h3 { font-size: 13px; }
+  .software-actions { padding-top: var(--space-5); margin-top: auto; }
+  .software-actions a { display: inline-flex; align-items: center; gap: var(--space-1); padding: 7px 10px; border-radius: var(--radius-sm); background: var(--dark-button); color: var(--dark-button-ink); font-size: 11px; transition: opacity .2s; }
+  .software-actions a:hover { opacity: .8; }
+  .recommendation-note { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line); }
+  .recommendation-note p { font-size: 12px; color: var(--muted); }
+  .recommendation-note .text-link { flex-shrink: 0; color: var(--accent-ink); font-size: 12px; }
+  .recommendation-layout[data-filter="hardware"] { grid-template-columns: 1fr; }
+  .recommendation-layout[data-filter="software"] { grid-template-columns: minmax(0, 760px); }
+}
+
+@layer responsive {
+  @media (max-width: 1000px) and (min-width: 801px) {
+    .recommendation-layout { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); }
+    .hardware-grid { grid-template-columns: 1fr; }
+    .hardware-card { min-height: 230px; }
+    .hardware-image img { height: 200px; }
+    .software-grid { grid-template-columns: 1fr; align-content: start; }
+  }
+  @media (max-width: 800px) {
+    .recommendation-layout { grid-template-columns: 1fr; gap: var(--space-8); }
+    .recommendations-heading { align-items: flex-start; flex-direction: column; }
+    .software-grid { grid-template-columns: 2fr 1fr 1fr; }
+    .featured-software { grid-column: auto; }
+    .software-card:not(.featured-software) .recommendation-body { padding: var(--space-4); }
+  }
+  @media (max-width: 600px) {
+    .recommendations-page { padding-block: var(--space-10) var(--space-12); }
+    .recommendations-heading { gap: var(--space-5); margin-bottom: var(--space-6); }
+    .recommendations-heading h1 { font-size: 30px; }
+    .recommendations-heading p { font-size: 13px; }
+    .recommendation-group > h2 { font-size: 18px; }
+    .hardware-grid { grid-template-columns: 1fr; }
+    .hardware-card { min-height: 240px; }
+    .hardware-image { flex-basis: 90px; width: 90px; }
+    .hardware-image img { height: 208px; }
+    .recommendation-body { padding: var(--space-4); }
+    .recommendation-body h3 { font-size: 15px; }
+    .recommendation-body ul { font-size: 12px; }
+    .software-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .featured-software { grid-column: 1 / -1; }
+    .software-card:not(.featured-software) h3 { font-size: 14px; }
+    .recommendation-note { align-items: flex-start; flex-direction: column; gap: var(--space-3); }
+  }
+}

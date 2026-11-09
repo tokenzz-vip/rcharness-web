@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rcharness.tokenzz.vip/sitemap.xml
