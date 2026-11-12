@@ -32,21 +32,45 @@
 
   const menuButton = document.querySelector('.menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
+  const contactMenus = document.querySelectorAll('.contact-menu');
+  function closeContact(except) {
+    contactMenus.forEach(menu => { if (menu !== except) menu.open = false; });
+  }
+  contactMenus.forEach(menu => menu.addEventListener('toggle', () => { if (menu.open) closeContact(menu); }));
+  document.addEventListener('click', event => {
+    contactMenus.forEach(menu => { if (!menu.contains(event.target)) menu.open = false; });
+  });
+  document.addEventListener('focusin', event => {
+    contactMenus.forEach(menu => { if (!menu.contains(event.target)) menu.open = false; });
+  });
   function closeMenu() {
+    closeContact();
     if (!mobileNav || !menuButton) return;
     mobileNav.hidden = true;
     menuButton.setAttribute('aria-expanded', 'false');
     menuButton.setAttribute('aria-label', '展开导航');
   }
   menuButton?.addEventListener('click', () => {
+    closeContact();
     const open = menuButton.getAttribute('aria-expanded') !== 'true';
     mobileNav.hidden = !open;
     menuButton.setAttribute('aria-expanded', String(open));
     menuButton.setAttribute('aria-label', open ? '收起导航' : '展开导航');
   });
-  mobileNav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
-  window.matchMedia('(min-width: 961px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+  mobileNav?.querySelectorAll(':scope > a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape') return;
+    const openContact = [...contactMenus].find(menu => menu.open);
+    if (openContact) {
+      closeContact();
+      openContact.querySelector('summary').focus();
+      return;
+    }
+    const menuWasOpen = menuButton?.getAttribute('aria-expanded') === 'true';
+    closeMenu();
+    if (menuWasOpen) menuButton.focus();
+  });
+  window.matchMedia('(min-width: 961px)').addEventListener('change', closeMenu);
 
   const downloadDialog = document.getElementById('download-dialog');
   document.querySelectorAll('[data-download]').forEach(button => button.addEventListener('click', () => downloadDialog?.showModal()));

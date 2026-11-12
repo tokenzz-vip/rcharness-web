@@ -15,17 +15,30 @@
     <link rel="canonical" href="https://rcharness.tokenzz.vip/" />
     <link rel="icon" href="assets/favicon.png" type="image/png" />
     <link rel="preload" href="assets/mapping.webp?v=20261110-site" as="image" />
-    <link rel="stylesheet" href="styles.css?v=20261110-downloads" />
-    <script src="app.js?v=20261110-wheel" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261112-tokenzz-playful" />
+    <script src="app.js?v=20261112-follow-nav" defer></script>
     <title>RcHarness — 用遥控器操作你的电脑</title>
   </head>
   <body>
     <a class="skip-link" href="#main">跳转到正文</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="./" aria-label="RcHarness 首页"><img src="assets/app-icon.webp" alt="" width="44" height="44" /><span>RcHarness<span class="brand-dot">.</span></span></a>
-        <nav class="desktop-nav" aria-label="主导航"><a class="tokenzz-link" href="https://tokenzz.vip" target="_blank" rel="noopener noreferrer">Tokenzz</a><a href="recommendations/">推荐</a>
+        <a class="brand" href="./" aria-label="RcHarness 首页"><img src="assets/app-icon.webp" alt="" width="44" height="44" /><span>RcHarness</span></a>
+        <nav class="desktop-nav" aria-label="主导航"><a class="tokenzz-link" aria-label="Tokenzz" href="https://tokenzz.vip" target="_blank" rel="noopener noreferrer"><span class="tokenzz-wordmark">Token<span class="tokenzz-z">z</span><span class="tokenzz-z">z</span></span></a><a href="recommendations/">推荐</a>
           <a href="#features">功能</a><a href="#showcase">产品界面</a><a href="#start">使用方法</a><a href="#faq">常见问题</a>
+          <details class="contact-menu">
+            <summary class="contact-toggle">关注 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></summary>
+            <div class="contact-panel" role="region" aria-label="关注 Tokenzz">
+              <figure class="contact-card">
+                <a class="contact-image" href="assets/contact-douyin.jpg" download="Tokenzz-抖音.jpg" aria-label="保存 Tokenzz 抖音二维码图片"><img src="assets/contact-douyin.jpg" alt="Tokenzz 抖音二维码，抖音号 tokenzz" width="1107" height="1600" loading="lazy" /></a>
+                <figcaption><h3>抖音 · Tokenzz</h3><p>保存图片后，在抖音扫一扫</p></figcaption>
+              </figure>
+              <figure class="contact-card">
+                <a class="contact-image" href="assets/contact-xiaohongshu.jpg" download="Tokenzz-小红书.jpg" aria-label="保存 Tokenzz 小红书二维码图片"><img src="assets/contact-xiaohongshu.jpg" alt="Tokenzz 小红书二维码，小红书号 Tokenzz" width="987" height="1347" loading="lazy" /></a>
+                <figcaption><h3>小红书 · Tokenzz</h3><p>扫码关注 Tokenzz 的小红书</p></figcaption>
+              </figure>
+            </div>
+          </details>
         </nav>
         <div class="header-actions">
           <a class="github-link icon-button" href="https://github.com/tokenzz-vip/RcHarness" target="_blank" rel="noopener noreferrer" aria-label="打开 RcHarness GitHub 项目" title="GitHub 项目"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.292-1.552 3.295-1.23 3.295-1.23.647 1.653.24 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.805 5.625-5.476 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .319.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12Z"/></svg></a>
@@ -34,7 +47,21 @@
           <button class="menu-toggle icon-button" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
         </div>
       </div>
-      <nav id="mobile-nav" class="mobile-nav" aria-label="移动端导航" hidden><a class="tokenzz-link" href="https://tokenzz.vip" target="_blank" rel="noopener noreferrer">Tokenzz</a><a href="recommendations/">推荐</a><a href="#features">功能</a><a href="#showcase">产品界面</a><a href="#start">使用方法</a><a href="#faq">常见问题</a><a href="guide.html">使用指南 ↗</a></nav>
+      <nav id="mobile-nav" class="mobile-nav" aria-label="移动端导航" hidden><a class="tokenzz-link" aria-label="Tokenzz" href="https://tokenzz.vip" target="_blank" rel="noopener noreferrer"><span class="tokenzz-wordmark">Token<span class="tokenzz-z">z</span><span class="tokenzz-z">z</span></span></a><a href="recommendations/">推荐</a><a href="#features">功能</a><a href="#showcase">产品界面</a><a href="#start">使用方法</a><a href="#faq">常见问题</a><a href="guide.html">使用指南 ↗</a>
+        <details class="contact-menu">
+            <summary class="contact-toggle">关注 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></summary>
+            <div class="contact-panel" role="region" aria-label="关注 Tokenzz">
+              <figure class="contact-card">
+                <a class="contact-image" href="assets/contact-douyin.jpg" download="Tokenzz-抖音.jpg" aria-label="保存 Tokenzz 抖音二维码图片"><img src="assets/contact-douyin.jpg" alt="Tokenzz 抖音二维码，抖音号 tokenzz" width="1107" height="1600" loading="lazy" /></a>
+                <figcaption><h3>抖音 · Tokenzz</h3><p>保存图片后，在抖音扫一扫</p></figcaption>
+              </figure>
+              <figure class="contact-card">
+                <a class="contact-image" href="assets/contact-xiaohongshu.jpg" download="Tokenzz-小红书.jpg" aria-label="保存 Tokenzz 小红书二维码图片"><img src="assets/contact-xiaohongshu.jpg" alt="Tokenzz 小红书二维码，小红书号 Tokenzz" width="987" height="1347" loading="lazy" /></a>
+                <figcaption><h3>小红书 · Tokenzz</h3><p>扫码关注 Tokenzz 的小红书</p></figcaption>
+              </figure>
+            </div>
+          </details>
+      </nav>
     </header>
 
     <main id="main">
@@ -45,7 +72,7 @@
           <p class="hero-description">按住说话，切换 AI 应用，输入常用语。<br />把反复用到的操作，放到手边的按键上。</p>
           <div class="hero-buttons hero-downloads" role="group" aria-label="按系统下载 RcHarness">
             <div class="platform-download">
-              <a class="button button-dark button-large" href="https://github.com/tokenzz-vip/RcHarness/releases/download/v0.2.0/RcHarness-v0.2.0-macos-arm64.zip" aria-describedby="mac-download-note">下载 Mac 版 <span aria-hidden="true">↓</span></a>
+              <a class="button button-dark button-large" href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer" aria-describedby="mac-download-note">下载 Mac 版 <span aria-hidden="true">↗</span></a>
               <span id="mac-download-note">仅 Apple 芯片 · macOS 14+</span>
             </div>
             <div class="platform-download">
@@ -151,9 +178,9 @@
       <section id="download" class="download-section container" aria-labelledby="download-title"><img src="assets/app-icon.webp" alt="" width="96" height="96" loading="lazy"/><p class="eyebrow">RcHarness</p><h2 id="download-title">让手边的遥控器，<br />接上你的工作流</h2><p>按住说话，切换应用，输入常用语</p><button class="button button-dark button-large" type="button" data-download>获取应用 <span aria-hidden="true">↓</span></button><span class="download-status"><span class="status-dot"></span>当前提供 macOS 下载 · Apple Silicon · macOS 14+</span></section>
     </main>
 
-    <footer class="site-footer container"><div class="footer-main"><a class="brand" href="./"><img src="assets/app-icon.webp" alt="" width="36" height="36"/><span>RcHarness<span class="brand-dot">.</span></span></a><span>小小遥控器，大大生产力</span><nav aria-label="页脚导航"><a href="recommendations/">推荐</a><a href="guide.html">使用指南</a><a href="#privacy">隐私说明</a><a href="#faq">常见问题</a><button class="footer-link" type="button" data-download>获取 App ↗</button></nav></div><div class="footer-bottom"><span>© 2026 RcHarness</span><a href="https://rcharness.tokenzz.vip">rcharness.tokenzz.vip <span aria-hidden="true">↗</span></a><span>蓝牙遥控 · 桌面工作流</span></div></footer>
+    <footer class="site-footer container"><div class="footer-main"><a class="brand" href="./"><img src="assets/app-icon.webp" alt="" width="36" height="36"/><span>RcHarness</span></a><span>小小遥控器，大大生产力</span><nav aria-label="页脚导航"><a href="recommendations/">推荐</a><a href="guide.html">使用指南</a><a href="#privacy">隐私说明</a><a href="#faq">常见问题</a><button class="footer-link" type="button" data-download>获取 App ↗</button></nav></div><div class="footer-bottom"><span>© 2026 RcHarness</span><a href="https://rcharness.tokenzz.vip">rcharness.tokenzz.vip <span aria-hidden="true">↗</span></a><span>蓝牙遥控 · 桌面工作流</span></div></footer>
 
-    <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-dialog-title"><button class="dialog-close icon-button" type="button" data-close aria-label="关闭下载窗口">×</button><img src="assets/app-icon.webp" alt="" width="76" height="76"/><span class="mini-pill">RcHarness</span><h2 id="download-dialog-title">获取 RcHarness</h2><p>当前提供 macOS 下载。<br />下载应用压缩包，解压后将<br />RcHarness.app 移入「应用程序」</p><div class="requirements"><span>Apple Silicon</span><span>macOS 14+</span><span>蓝牙遥控器</span></div><a class="button button-dark" href="https://github.com/tokenzz-vip/RcHarness/releases" target="_blank" rel="noopener noreferrer">前往 GitHub Releases <span aria-hidden="true">↗</span></a><button class="button button-outline" type="button" data-close>继续探索功能</button></dialog>
+    <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-dialog-title"><button class="dialog-close icon-button" type="button" data-close aria-label="关闭下载窗口">×</button><img src="assets/app-icon.webp" alt="" width="76" height="76"/><span class="mini-pill">RcHarness</span><h2 id="download-dialog-title">获取 RcHarness</h2><p>当前提供 macOS 下载。<br />下载应用压缩包，解压后将<br />RcHarness.app 移入「应用程序」</p><div class="requirements"><span>Apple Silicon</span><span>macOS 14+</span><span>蓝牙遥控器</span></div><a class="button button-dark" href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer">前往 GitHub Releases <span aria-hidden="true">↗</span></a><button class="button button-outline" type="button" data-close>继续探索功能</button></dialog>
     <dialog id="screenshot-dialog" class="screenshot-dialog" aria-label="产品界面大图"><button class="dialog-close icon-button" type="button" data-close aria-label="关闭产品大图">×</button><img id="expanded-image" src="assets/mapping.webp?v=20261110-site" data-product-screen="mapping" alt="RcHarness 按键映射界面大图" width="1600" height="1171"/><p>RcHarness · 实际产品界面</p></dialog>
   </body>
 </html>
