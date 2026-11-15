@@ -77,3 +77,14 @@
 核验来源：Mac 发布 API https://api.github.com/repos/tokenzz-vip/RcHarness/releases/latest；本地 RcHarness-Win/README.md 与构建 workflow。首屏平台说明使用 aria-describedby 关联按钮。
 
 按用户指定，网站下载区将 Windows 系统要求标注为 Windows 11 及以上、仅 x64。此项更新仅涉及网站说明；本地 Windows 项目的 README 与安装器仍以 Windows 10+ 为基线，未在此次修改。
+
+## v0.6.0 页面同步
+
+日期：2026-11-15。根据 RcHarness v0.6.0（2026-11-14 发布）的官方 README、行为说明与 `docs/images`，官网同步了以下内容：
+
+- 首屏和下载区标注 v0.6.0，按键映射截图更新为官方新版界面。
+- 产品界面切换更新为按键映射、应用 Harness、连接与语音、常用语四个 v0.6.0 页面；运行中的 Harness 使用新版快速切换浮层。
+- 内置 Harness 列表补充 OpenCode；默认电源键说明更新为单击打开运行列表、双击未设置、长按进入原生模式。
+- Google Chromecast G9N9N 增加点按语音模式说明；设置页补充应用内更新与虚拟麦克风组件同步更新说明。
+
+核验来源：[RcHarness v0.6.0](https://github.com/tokenzz-vip/RcHarness/releases/tag/v0.6.0)、[官方 README](https://github.com/tokenzz-vip/RcHarness/blob/main/README.md)、[官方界面截图](https://github.com/tokenzz-vip/RcHarness/tree/main/docs/images)。

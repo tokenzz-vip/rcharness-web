@@ -18,6 +18,6 @@ npm run build
 
 npm 脚本复用 Python 3，无需运行 `npm install`。也可直接执行 `python3 -m http.server 4173 --bind 127.0.0.1` 和 `python3 scripts/build.py`。
 
-内容及产品截图对应 RcHarness v0.2.0（1067cae，2026-11-10）。截图由软件的 `--render-settings` 模式导出，深浅色各自提供 WebP 素材。该模式使用临时配置，截图中的连接状态与统计是演示状态。
+内容及产品截图对应 RcHarness v0.6.0（2026-11-14 发布）。截图来自 RcHarness 官方仓库 `docs/images`，覆盖按键映射、Harness、快速切换、连接与语音、常用语页面；截图中的连接状态与统计是演示状态。
 
 设计方向与核对记录见 [页面优化记录](docs/design-review.md)。设计检查采用 [unslop](https://heydamir.design/unslop)，作者为 [Damir Sokolovsky（@heydamir）](https://x.com/heydamir)，CC BY 4.0。

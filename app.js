@@ -3,6 +3,13 @@
 
   const root = document.documentElement;
   const assetBase = new URL('assets/', document.currentScript.src);
+  const productAssets = {
+    mapping: 'latest/key-mapping.png',
+    harness: 'latest/harness.png',
+    switcher: 'latest/harness-switcher.png',
+    connection: 'latest/connection-voice.png',
+    phrases: 'latest/phrases.png',
+  };
   const themeButton = document.querySelector('.theme-toggle');
   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
   let savedTheme = null;
@@ -10,7 +17,8 @@
   function syncProductImages() {
     const suffix = root.dataset.theme === 'dark' ? '-dark' : '';
     document.querySelectorAll('img[data-product-screen]').forEach(img => {
-      const source = new URL(`${img.dataset.productScreen}${suffix}.webp?v=20261110-site`, assetBase).href;
+      const screen = img.dataset.productScreen;
+      const source = new URL(productAssets[screen] || `${screen}${suffix}.webp?v=20261110-site`, assetBase).href;
       if (img.getAttribute('src') !== source) img.src = source;
     });
   }
@@ -162,16 +170,10 @@
   }));
 
   const screens = {
-    mapping: { title: '按键映射', caption: '对照实物配置按键，分别设置单击、双击与长按', alt: '遥控器实物图、按键连线、三种手势与全局按键' },
-    harness: { title: '应用 Harness', caption: '添加应用、绑定方案，查看运行与启用状态', alt: '内置与自定义应用的方案绑定、运行状态及添加入口' },
-    profiles: { title: '键位方案', caption: '按遥控器型号保存方案，同一方案可由多个 Harness 共享', alt: '默认方案与应用方案，以及新建、复制和管理入口' },
-    macros: { title: '组合动作', caption: '按顺序配置本机动作与每一步的等待时间', alt: '组合动作列表、步骤编辑器与等待时间' },
-    phrases: { title: '常用语', caption: '按键分配、常用语库与两组内容，在一页管理', alt: '按键分配、16 条双语常用语和内容 1、内容 2 编辑器' },
-    'phrase-picker': { title: '常用语浮层', caption: 'macOS 常用语浮层：单击输入内容 1，双击输入内容 2', alt: 'macOS 常用语浮层的真实软件界面', compact: true },
-    connection: { title: '连接与语音', caption: '分别检查按键与语音连接，选择接收设备并发送测试音', alt: '遥控器连接、接收设备、麦克风组件、测试音与增益设置' },
-    about: { title: '设置', caption: '全局按键、系统权限与启动偏好', alt: '应用信息、全局按键、系统权限与通用设置' },
-    'configuration-import': { title: '配置导入预览', caption: '确认替换前先核对变更范围，替换后可恢复上一份配置', alt: '导入配置前各类配置数量的比较与确认替换按钮', compact: true },
-    statistics: { title: '使用统计', caption: '本机记录按键次数与语音时长，不保存录音或听写内容', alt: '按键次数、语音时长与历史使用记录' },
+    mapping: { title: '按键映射', caption: '按当前遥控器配置单击、双击与长按，并管理全局按键', alt: '遥控器实物图、按键连线、三种手势与全局按键' },
+    harness: { title: '应用 Harness', caption: '管理内置与自定义应用，绑定方案并查看运行状态', alt: 'Codex、Claude、Cursor、DeepSeek、WorkBuddy 与 OpenCode 的方案绑定和启用状态' },
+    connection: { title: '连接与语音', caption: '检查按键与语音连接，调整增益并管理虚拟麦克风组件', alt: '遥控器连接、电量、接收设备、增益、测试音与虚拟麦克风组件' },
+    phrases: { title: '常用语', caption: '分配五向按键，编辑排序常用语库与两组内容', alt: '五向按键分配、常用语列表和内容 1、内容 2 编辑器' },
   };
   const tabs = [...document.querySelectorAll('[data-screen]')];
   const screenshot = document.getElementById('showcase-image');
