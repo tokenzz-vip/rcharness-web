@@ -61,7 +61,6 @@
   .eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--subtle); font-size: 12px; font-weight: 400; line-height: 1.5; }
   .text-link { display: inline-flex; align-items: center; gap: 16px; font-size: 14px; font-weight: 500; }
   .text-link:hover { color: var(--accent-ink); }
-  .status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--subtle); flex: 0 0 auto; }
   .skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 20px; border-radius: 8px; color: var(--bg); background: var(--ink); }
   .skip-link:focus { top: 16px; }
   kbd { font-family: var(--font); font-weight: 400; font-variant-numeric: tabular-nums; }
@@ -95,13 +94,20 @@
   dialog::backdrop { background: rgb(0 0 0 / 48%); }
   body:has(dialog[open]) { overflow: hidden; }
   .dialog-close { position: absolute; top: 12px; right: 12px; font-size: 24px; }
-  .download-dialog { text-align: center; }
-  .download-dialog > img { margin: 0 auto 16px; }
-  .download-dialog h2 { margin-block: 16px 12px; font-size: 28px; }
-  .download-dialog > p { font-size: 14px; color: var(--muted); }
-  .requirements { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-block: 24px; color: var(--muted); font-size: 12px; }
-  .requirements span + span::before { content: "·"; margin-right: 12px; }
+  .download-dialog { max-height: calc(100dvh - 32px); padding: 32px 24px 24px; scrollbar-width: none; text-align: center; }
+  .download-dialog .dialog-close { z-index: 11; }
+  .download-dialog-header > img { width: 64px; height: 64px; margin: 0 auto 12px; }
+  .download-dialog h2 { margin-block: 12px 8px; font-size: 28px; }
   .download-dialog .button { width: 100%; margin-top: 12px; }
+  .download-dialog .button:disabled { cursor: not-allowed; color: var(--subtle); background: var(--surface); border-color: var(--line); opacity: .78; }
+  .download-options { display: grid; gap: 12px; margin-top: 20px; }
+  .download-options .button { margin-top: 0; }
+  .dialog-download-platforms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 12px; margin-top: 24px; text-align: left; }
+  .dialog-download-platforms .button { margin-top: 0; }
+  .download-dialog-summary { margin-top: 16px; }
+  .download-dialog-summary h3 { margin-bottom: 8px; font-size: 18px; }
+  .download-dialog-summary p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+  .download-dialog .release-link { display: inline-block; margin-top: 16px; color: var(--muted); font-size: 13px; }
   .screenshot-dialog { width: min(1440px, calc(100% - 32px)); padding: 56px 16px 16px; }
   .screenshot-dialog img { width: auto; max-height: calc(100dvh - 160px); margin-inline: auto; border-radius: 4px; object-fit: contain; }
   .screenshot-dialog p { padding-top: 12px; text-align: center; font-size: 12px; color: var(--subtle); }
@@ -163,13 +169,35 @@
   .hero h1 > span { color: var(--ink); }
   .hero-description { margin-top: 24px; color: var(--muted); font-size: 17px; line-height: 1.9; }
   .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .hero-downloads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 440px; gap: 16px; }
+  .hero-downloads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 480px; gap: 16px; align-items: start; }
   .platform-download { display: flex; flex-direction: column; min-width: 0; gap: 8px; }
   .platform-download .button { width: 100%; }
   .platform-download > span { color: var(--subtle); font-size: 12px; line-height: 1.5; }
-  .platform-download .button:disabled { cursor: not-allowed; color: var(--subtle); background: var(--surface); border-color: var(--line); }
+  .platform-download .button:disabled { cursor: not-allowed; color: var(--subtle); background: color-mix(in srgb, var(--dark-button) 8%, var(--bg)); border-color: color-mix(in srgb, var(--dark-button) 22%, var(--line)); opacity: 1; }
+  .mac-download { position: relative; }
+  .mac-download-trigger { width: 100%; color: var(--dark-button-ink); background: var(--dark-button); border-color: var(--dark-button); }
+  .mac-download-trigger:hover { background: color-mix(in srgb, var(--dark-button) 86%, var(--bg)); border-color: color-mix(in srgb, var(--dark-button) 86%, var(--bg)); }
+  .mac-download-trigger > span { font-size: 16px; line-height: 1; transition: transform 160ms var(--ease); }
+  .mac-download.is-open .mac-download-trigger > span { transform: rotate(180deg); }
+  .mac-download-menu { position: absolute; z-index: 10; top: calc(100% + 8px); left: 0; width: 264px; max-width: calc(100vw - 40px); min-width: 0; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-raised); box-shadow: var(--shadow); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-4px); transition: opacity 160ms var(--ease), transform 160ms var(--ease), visibility 160ms var(--ease); }
+  .mac-download-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -9px; height: 9px; }
+  .mac-download.is-open .mac-download-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+  .dialog-download-platforms .mac-download-menu { top: auto; bottom: calc(100% + 8px); max-width: calc(200% + 12px); transition-property: opacity, transform; }
+  .dialog-download-platforms .mac-download-menu::before { top: auto; bottom: -9px; }
+  .dialog-download-platforms .mac-download:not(.is-open) .mac-download-menu { transform: translateY(4px); }
+  .download-menu-heading { padding: 8px 10px 10px; color: var(--muted); font-size: 13px; }
+  .download-menu-heading strong { color: var(--ink); font-weight: 500; }
+  .download-choice { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 8px 10px; border-radius: 8px; }
+  .download-choice:hover, .download-choice:focus-visible { background: var(--surface-hover); }
+  .download-choice > span:first-child { min-width: 0; }
+  .download-choice strong, .download-choice small { display: block; }
+  .download-choice strong { font-size: 13px; font-weight: 500; }
+  .download-choice small { margin-top: 2px; color: var(--subtle); font-size: 11px; }
+  .architecture-badge { display: none; flex: 0 0 auto; padding: 2px 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 10px; }
+  .download-choice[data-current="true"] { background: var(--accent-soft); }
+  .download-choice[data-current="true"] .architecture-badge { display: inline-block; }
   .hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; color: var(--subtle); font-size: 12px; }
-  .hero-guide { display: inline-flex; align-items: center; gap: 12px; margin-top: 20px; color: var(--accent-ink); font-size: 12px; }
+  .hero-guide { display: inline-flex; align-items: center; gap: 12px; min-height: 24px; margin-top: 20px; color: var(--accent-ink); font-size: 12px; }
   .hero-guide:hover { text-decoration: underline; text-underline-offset: 4px; }
   .hero-visual { min-width: 0; }
   .hero-window { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-raised); box-shadow: var(--shadow); }
@@ -291,6 +319,14 @@
   .switcher-preview figcaption { margin-top: 24px; text-align: center; color: var(--subtle); font-size: 12px; }
 
   .start-section { padding-top: 32px; }
+  .setup-overview { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 48px; margin-bottom: 48px; }
+  .setup-copy > p { color: var(--muted); font-size: 14px; }
+  .setup-copy > p + p { margin-top: 20px; }
+  .setup-copy > .setup-lead { color: var(--ink); font-size: 18px; line-height: 1.8; }
+  .setup-copy > .setup-resume { padding-top: 20px; border-top: 1px solid var(--line); }
+  .setup-preview { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-raised); }
+  .setup-preview img { width: 100%; }
+  .setup-preview figcaption { padding: 12px 16px; border-top: 1px solid var(--line); color: var(--subtle); font-size: 12px; text-align: center; }
   .steps-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
   .step-number { display: flex; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); color: var(--subtle); font: 14px var(--mono); }
   .step-number > span { color: var(--subtle); }
@@ -317,14 +353,6 @@
   .faq-list details[open] summary span { transform: rotate(45deg); }
   .faq-list details > p { margin-bottom: 24px; color: var(--muted); font-size: 14px; line-height: 1.9; }
   .faq-list a { text-decoration: underline; text-underline-offset: 4px; }
-  .download-section { padding: 64px 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); text-align: center; }
-  .download-section > img { width: 72px; height: 72px; margin: 0 auto 24px; }
-  .download-section .eyebrow { justify-content: center; margin-bottom: 16px; }
-  .download-section h2 { font-size: 44px; }
-  .download-section > p:not(.eyebrow) { margin-top: 20px; font-size: 16px; color: var(--muted); }
-  .download-section .button { margin-top: 32px; }
-  .download-status { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 20px; color: var(--subtle); font-size: 12px; }
-  .download-status .status-dot { display: none; }
   .site-footer { padding-top: 64px; padding-bottom: 32px; }
   .footer-main { display: flex; align-items: center; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
   .footer-main > span { color: var(--subtle); font-size: 12px; }
@@ -344,6 +372,9 @@
   .guide-page article h3 { margin-top: 32px; margin-bottom: 12px; font-size: 20px; }
   .guide-page article p, .guide-page li { color: var(--muted); font-size: 15px; line-height: 1.9; }
   .guide-page article p + p { margin-top: 16px; }
+  .setup-guide-steps { margin-block: 24px; }
+  .setup-guide-steps strong { color: var(--ink); }
+  .setup-guide-preview { margin-top: 24px; }
   .guide-page li + li { margin-top: 12px; }
   .guide-page ul, .guide-page ol { padding-left: 24px; }
   .guide-page article a, .guide-notice a { text-decoration: underline; text-underline-offset: 4px; color: var(--accent-ink); }
@@ -421,6 +452,7 @@
     .hero .eyebrow { margin-bottom: 20px; font-size: 12px; }
     .hero-description { font-size: 16px; margin-top: 24px; }
     .hero-buttons { margin-top: 24px; gap: 12px; }
+    .hero-downloads { grid-template-columns: 1fr; max-width: none; }
     .hero-buttons .button { font-size: 14px; padding-inline: 20px; }
     .hero-guide { margin-top: 16px; }
     .hero-visual { width: 100%; }
@@ -429,6 +461,7 @@
     .hero-mobile-preview img { width: 296px; max-width: 100%; border-radius: 12px; }
     .hero-mobile-preview p { color: var(--muted); font-size: 13px; text-align: center; }
     .hero-caption { margin-top: 12px; }
+    .hero-downloads .mac-download-menu { width: 100%; min-width: 0; }
     .hero-caption > span { display: inline; }
     .apps-list { justify-content: flex-start; flex-wrap: wrap; gap: 16px 24px; }
     .apps-list > span { font-size: 14px; }
@@ -468,6 +501,8 @@
     .switcher-preview { padding: 24px 16px; }
     .switcher-preview figcaption { font-size: 11px; }
     .start-section { padding-top: 0; }
+    .setup-overview { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+    .setup-copy > .setup-lead { font-size: 16px; }
     .start-section .text-link { margin-top: 24px; }
     .steps-grid { grid-template-columns: 1fr; gap: 32px; }
     .steps-grid p { min-height: 0; }
@@ -479,14 +514,14 @@
     .privacy-list li { gap: 8px; font-size: 12px; }
     .faq-section { grid-template-columns: 1fr; gap: 32px; }
     .faq-list summary { font-size: 14px; }
-    .download-section { padding: 40px 20px; border-radius: 16px; }
-    .download-section h2 { font-size: 32px; }
-    .download-section > p:not(.eyebrow) { font-size: 14px; }
     .site-footer { padding-top: 48px; }
     .footer-main { flex-wrap: wrap; gap: 24px; }
     .footer-main nav { width: 100%; margin-left: 0; gap: 16px 20px; }
     .footer-bottom { gap: 12px 24px; }
     .footer-bottom > span:last-child { width: 100%; margin-left: 0; }
+    .dialog-download-platforms { margin-top: 16px; }
+    .dialog-download-platforms .button { gap: 4px; padding-inline: 4px; font-size: 12px; white-space: normal; }
+    .download-dialog .release-link { margin-top: 12px; }
     .guide-page { margin-block: 40px 64px; }
     .guide-page h1 { font-size: 36px; }
     .guide-page .lead { font-size: 16px; }
@@ -495,6 +530,15 @@
     .guide-page article p, .guide-page li { font-size: 14px; }
     .guide-page pre { padding: 20px; font-size: 12px; }
     .guide-notice { padding: 20px; font-size: 13px; }
+  }
+  @media (max-height: 600px) {
+    .download-dialog { padding: 20px 20px 16px; }
+    .download-dialog .dialog-close { top: 6px; right: 6px; width: 32px; }
+    .download-dialog-header { min-height: 172px; }
+    .download-dialog-header > img { display: inline-block; width: 32px; height: 32px; margin: 0 4px 0 0; vertical-align: middle; }
+    .download-dialog h2 { display: inline-block; margin: 0; font-size: 24px; vertical-align: middle; }
+    .dialog-download-platforms { margin-top: 12px; }
+    .download-dialog .release-link { margin-top: 8px; }
   }
   @media (max-width: 374px) {
     .phrase-demo-body { padding: 12px; }

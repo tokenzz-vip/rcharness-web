@@ -10,13 +10,13 @@
     <meta property="og:title" content="推荐 — RcHarness" />
     <meta property="og:description" content="找到顺手的遥控器，发现好用的语音输入软件。" />
     <meta property="og:url" content="https://rcharness.tokenzz.vip/recommendations/" />
-    <meta property="og:image" content="https://rcharness.tokenzz.vip/assets/social.png" />
+    <meta property="og:image" content="https://rcharness.tokenzz.vip/assets/social.png?v=20261118" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://rcharness.tokenzz.vip/recommendations/" />
     <link rel="icon" href="../assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="../styles.css?v=20261115-v060" />
+    <link rel="stylesheet" href="../styles.css?v=20261118-download-menu-up" />
     <link rel="stylesheet" href="styles.css?v=20261110-original" />
-    <script src="../app.js?v=20261115-v060" defer></script>
+    <script src="../app.js?v=20261118-download-menu-up" defer></script>
     <script src="app.js" defer></script>
     <title>推荐 — RcHarness</title>
   </head>
@@ -124,6 +124,39 @@
       <div class="recommendation-note"><p>RcHarness 负责传递音频，识别由语音输入软件完成。小米遥控器支持按住说话，Google Chromecast G9N9N 还支持点按模式。请在两端选择相同的接收设备（随包组件默认为「RcHarness 遥控器麦克风」），并配置一致的触发快捷键。</p><a class="text-link" href="../guide.html#voice">查看配置指南 <span aria-hidden="true">↗</span></a></div>
     </main>
     <footer class="site-footer container"><div class="footer-main"><a class="brand" href="../"><img src="../assets/app-icon.webp" alt="" width="36" height="36"/><span>RcHarness</span></a><span>小小遥控器，大大生产力</span><nav aria-label="页脚导航"><a href="./" aria-current="page">推荐</a><a href="../guide.html">使用指南</a><a href="../#privacy">隐私说明</a><a href="../#faq">常见问题</a><button class="footer-link" type="button" data-download>获取 App ↗</button></nav></div><div class="footer-bottom"><span>© 2026 RcHarness</span><a href="https://rcharness.tokenzz.vip">rcharness.tokenzz.vip <span aria-hidden="true">↗</span></a><span>蓝牙遥控 · 桌面工作流</span></div></footer>
-    <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-dialog-title"><button class="dialog-close icon-button" type="button" data-close aria-label="关闭下载窗口">×</button><img src="../assets/app-icon.webp" alt="" width="76" height="76"/><span class="mini-pill">RcHarness</span><h2 id="download-dialog-title">获取 RcHarness</h2><p>当前提供 macOS 下载。<br />下载应用压缩包，解压后将<br />RcHarness.app 移入「应用程序」</p><div class="requirements"><span>Apple Silicon</span><span>macOS 14+</span><span>蓝牙遥控器</span></div><a class="button button-dark" href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer">前往 GitHub Releases <span aria-hidden="true">↗</span></a><button class="button button-outline" type="button" data-close>继续探索功能</button></dialog>
+    <dialog id="download-dialog" class="download-dialog" aria-labelledby="download-dialog-title">
+      <button class="dialog-close icon-button" type="button" data-close aria-label="关闭下载窗口">×</button>
+      <div class="download-dialog-header">
+        <img src="../assets/app-icon.webp" alt="" width="76" height="76" />
+        <h2 id="download-dialog-title">获取 RcHarness</h2>
+        <div class="download-dialog-summary">
+          <h3>用遥控器，操作你的电脑</h3>
+          <p>按住说话，切换 AI 应用，输入常用语。<br />按键方案会随当前 Harness 自动切换。</p>
+        </div>
+      </div>
+      <div class="dialog-download-platforms">
+        <div class="platform-download mac-download">
+          <button class="button button-outline button-large mac-download-trigger" type="button" aria-haspopup="menu" aria-expanded="false">下载 Mac 版 <span aria-hidden="true">⌄</span></button>
+          <span>macOS 14+ · Apple Silicon / Intel</span>
+          <div class="mac-download-menu" role="menu" aria-label="选择 Mac 芯片架构">
+            <div class="download-menu-heading"><strong>选择芯片版本</strong></div>
+            <a class="download-choice" role="menuitem" data-architecture="arm64" href="https://github.com/tokenzz-vip/RcHarness/releases/latest/download/RcHarness-macos-arm64.dmg" target="_blank" rel="noopener noreferrer">
+              <span><strong>Apple 芯片版</strong><small>Apple Silicon · arm64</small></span>
+              <span class="architecture-badge" data-current-badge>当前设备</span>
+            </a>
+            <a class="download-choice" role="menuitem" data-architecture="x86_64" href="https://github.com/tokenzz-vip/RcHarness/releases/latest/download/RcHarness-macos-x86_64.dmg" target="_blank" rel="noopener noreferrer">
+              <span><strong>Intel 版</strong><small>Intel · x86_64</small></span>
+              <span class="architecture-badge" data-current-badge>当前设备</span>
+            </a>
+          </div>
+        </div>
+        <div class="platform-download">
+          <button class="button button-outline button-large" type="button" disabled>下载 Windows 版</button>
+          <span>暂未上线</span>
+        </div>
+      </div>
+      <a class="release-link" href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer">查看全部版本 <span aria-hidden="true">↗</span></a>
+      <button class="button button-outline" type="button" data-close>继续探索功能</button>
+    </dialog>
   </body>
 </html>

@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="RcHarness v0.6.0 本地构建与首次使用指南：Apple Silicon、macOS 14、Swift 构建、蓝牙配对、系统权限、语音输入与应用内更新。" />
+    <meta name="description" content="RcHarness macOS 安装与使用指南：七步首次使用向导、系统授权、蓝牙遥控器配对、麦克风与语音快捷键设置、语音试用，以及本地构建与应用内更新。" />
     <link rel="canonical" href="https://rcharness.tokenzz.vip/guide.html" />
     <link rel="icon" href="assets/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="styles.css?v=20261115-v060" />
-    <script src="app.js?v=20261115-v060" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261118-setup" />
+    <script src="app.js?v=20261118-setup" defer></script>
     <title>构建与使用指南 — RcHarness</title>
   </head>
   <body>
@@ -47,11 +47,37 @@
       <a class="text-link back-link" href="./"><span aria-hidden="true">←</span> 返回 RcHarness</a>
       <p class="eyebrow">RcHarness · 安装与配置</p>
       <h1>把遥控器接到电脑上</h1>
-      <p class="lead">当前指南适用于 RcHarness v0.6.0（macOS）。从下载与配对，到按住说话、点按说话和常用语配置。<br />按顺序完成配置，也可以直接跳到需要的部分。</p>
-      <div class="guide-notice">优先从 <a href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 下载应用压缩包，解压后将 RcHarness.app 移入「应用程序」。第 02 节仅供需要源码构建的用户参考。</div>
-      <nav class="guide-contents" aria-label="指南目录"><a href="#requirements">开始前准备</a><a href="#build">源码构建</a><a href="#pair">配对与授权</a><a href="#voice">语音输入</a><a href="#workflow">应用与方案</a><a href="#phrases">常用语配置</a><a href="#troubleshooting">排查问题</a></nav>
-      <article id="requirements"><h2>01 · 开始前准备</h2><ul><li>Apple Silicon（M 系列芯片）Mac，运行 macOS 14 或更高版本。</li><li>仅源码构建需要 Xcode 与 Swift 工具链；当前 CI 与发布使用 Xcode 27.1 / Swift 6.4。</li><li>仅源码构建需要 RcHarness 源码工作副本。项目为 Swift / SwiftPM 原生 macOS 应用，没有第三方 Swift 依赖。</li><li>支持的蓝牙遥控器：小米蓝牙遥控器 2（RC001-MS）、2 Pro（RC003-MS）或 Google Chromecast（G9N9N）。小米支持按住说话，Chromecast 还支持点按模式；G9N9N 仅验证拼多多店铺「金利达数码科技大全」销售的产品，其他店铺或批次尚未验证。详见<a href="recommendations/">推荐页面</a>。</li><li>如需语音转文字，另外准备语音输入工具，并确认可以指定麦克风与触发快捷键。</li></ul></article>
-      <article id="build"><h2>02 · 构建本地 App</h2><p>在终端中进入 RcHarness 源码根目录，执行测试与构建。以下命令生成本地使用的 Apple Silicon 应用，不会发布安装包。</p><pre><code># 先进入你本机的 RcHarness 源码目录
+      <p class="lead">当前指南适用于 RcHarness v1.0.1（macOS）。首次启动可跟随设置向导完成连接与语音试用，再按需要调整应用与常用语。<br />按顺序完成配置，也可以直接跳到需要的部分。</p>
+      <div class="guide-notice">从 <a href="https://github.com/tokenzz-vip/RcHarness/releases/latest" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 选择与你的 Mac 芯片对应的 DMG：Apple Silicon（arm64）或 Intel（x86_64）。打开后将 RcHarness.app 移入「应用程序」，首次启动跟随<a href="#setup">设置向导</a>完成配置。第 02 节仅供需要源码构建的用户参考。</div>
+      <nav class="guide-contents" aria-label="指南目录"><a href="#setup">首次使用向导</a><a href="#requirements">开始前准备</a><a href="#build">源码构建</a><a href="#pair">配对与授权</a><a href="#voice">语音输入</a><a href="#workflow">应用与方案</a><a href="#phrases">常用语配置</a><a href="#troubleshooting">排查问题</a></nav>
+      <article id="setup" aria-labelledby="setup-guide-title">
+        <h2 id="setup-guide-title">首次使用 · 跟着向导完成设置</h2>
+        <p>安装后第一次打开 RcHarness，会自动进入设置向导。跟随七步提示完成配置，并在目标应用中实际试用语音，再开始日常使用。</p>
+        <ol class="setup-guide-steps">
+          <li><strong>欢迎使用：</strong>了解设置流程，准备支持的蓝牙遥控器和语音输入工具。</li>
+          <li><strong>系统权限：</strong>逐项检查蓝牙、输入监控、辅助功能和麦克风授权。从系统设置返回后，向导会刷新状态。</li>
+          <li><strong>连接遥控器：</strong>选择型号，按向导显示的组合键进入配对模式，在 macOS 蓝牙设置中连接。再按一下非语音键，确认按键与语音连接均已就绪。</li>
+          <li><strong>麦克风设置：</strong>安装或更新随 App 提供的麦克风组件，并选择接收设备；在语音输入工具中使用相同的麦克风。</li>
+          <li><strong>语音快捷键：</strong>设置当前遥控器的触发方式与快捷键，在输入法或听写工具中配置一致的快捷键，并勾选确认。</li>
+          <li><strong>试用语音：</strong>打开目标应用的文本输入框，用遥控器说一句话。确认文字出现后返回向导，确认语音输入正常。</li>
+          <li><strong>设置完成：</strong>向导检查连接与语音试用状态。完成后可以使用默认按键，也可以配置自己的应用 Harness、按键方案与常用语。</li>
+        </ol>
+        <figure class="setup-preview setup-guide-preview">
+          <img src="assets/setup-remote.webp?v=20261118" data-product-screen="setup-remote" width="1600" height="1171" alt="设置向导的连接遥控器步骤：显示小米 2 Pro 配对组合键、打开蓝牙设置、重新连接和按键检测提示" loading="lazy" />
+          <figcaption>连接遥控器 · 根据所选型号显示配对方法与连接状态</figcaption>
+        </figure>
+        <h3>可以暂停，之后继续</h3>
+        <p>点击「稍后设置」或关闭窗口会暂停向导，已完成的设置与进度保存在本机。下次启动会继续引导，也可从设置页「继续设置向导」或菜单栏「设置向导…」重新打开。从后续步骤恢复时，会先回到连接检查，重新确认设备与语音试用。</p>
+        <p>完成后不再自动显示，也可以重新运行向导检查配置。升级后第一次看到向导时，已有键位和配置会保留。</p>
+        <h3>最后一步，要实际说一句话</h3>
+        <p>向导会检查语音开始、收到遥控器音频和正常结束，再由你确认目标应用中出现了文字。RcHarness 负责传递声音，语音识别由另外配置的输入法或听写工具完成；测试音用于检查音频输出，不能代替遥控器语音试用。</p>
+        <figure class="setup-preview setup-guide-preview">
+          <img src="assets/setup-test.webp?v=20261118" data-product-screen="setup-test" width="1600" height="1171" alt="设置向导的试用语音步骤：检查语音会话开始、收到音频、会话结束及音频输出，并确认文字结果" loading="lazy" />
+          <figcaption>试用语音 · 在实际输入框中确认语音转文字结果</figcaption>
+        </figure>
+      </article>
+      <article id="requirements"><h2>01 · 开始前准备</h2><ul><li>Intel（x86_64）或 Apple Silicon（M 系列芯片、arm64）Mac，运行 macOS 14 或更高版本。</li><li>仅源码构建需要 Xcode 与 Swift 工具链；当前 CI 与发布使用 Xcode 27.1 / Swift 6.4。</li><li>仅源码构建需要 RcHarness 源码工作副本。项目为 Swift / SwiftPM 原生 macOS 应用，没有第三方 Swift 依赖。</li><li>支持的蓝牙遥控器：小米蓝牙遥控器 2（RC001-MS）、2 Pro（RC003-MS）或 Google Chromecast（G9N9N）。小米支持按住说话，Chromecast 还支持点按模式；G9N9N 仅验证拼多多店铺「金利达数码科技大全」销售的产品，其他店铺或批次尚未验证。详见<a href="recommendations/">推荐页面</a>。</li><li>如需语音转文字，另外准备语音输入工具，并确认可以指定麦克风与触发快捷键。</li></ul></article>
+      <article id="build"><h2>02 · 构建本地 App</h2><p>在终端中进入 RcHarness 源码根目录，执行测试与构建。以下命令按当前 Mac 架构生成本地使用的应用，不会发布安装包。</p><pre><code># 先进入你本机的 RcHarness 源码目录
 cd /path/to/RcHarness
 
 # 先设置有效的 Apple 签名身份（不要填 -）
@@ -65,10 +91,10 @@ scripts/test_all.sh
 scripts/build_app.sh .build/RcHarness.app
 
 # 打开 App
-open .build/RcHarness.app</code></pre><p>音频探针需要相应录音权限与已安装的回环设备；环境不满足时会跳过。构建脚本默认生成 Release、arm64、最低 macOS 14 的 App，虚拟麦克风组件随 App 打包。</p><h3>签名与系统权限</h3><p>按当前源码 README 的构建要求，先将 <code>RC_HARNESS_LOCAL_SIGNING_IDENTITY</code> 设置为有效的 Apple 签名身份，值不要使用 <code>-</code>。应用与随包麦克风驱动应使用同一身份，并通过 <code>codesign --verify --deep --strict</code> 校验。如果变量只配置在 <code>~/.zshrc</code>，非交互构建时需通过 <code>zsh -ic</code> 加载。签名身份发生变化后，可能需要重新授予输入监控和辅助功能权限。</p><p>本地构建不等于已通过 Apple 公证的分发版本。分发签名、公证和公开下载不在本指南范围内。</p></article>
+open .build/RcHarness.app</code></pre><p>音频探针需要相应录音权限与已安装的回环设备；环境不满足时会跳过。构建脚本默认生成当前机器架构、最低 macOS 14 的 App；也可以通过 <code>RC_HARNESS_ARCH=arm64</code> 或 <code>RC_HARNESS_ARCH=x86_64</code> 指定目标架构。虚拟麦克风组件随 App 打包。</p><h3>签名与系统权限</h3><p>按当前源码 README 的构建要求，先将 <code>RC_HARNESS_LOCAL_SIGNING_IDENTITY</code> 设置为有效的 Apple 签名身份，值不要使用 <code>-</code>。应用与随包麦克风驱动应使用同一身份，并通过 <code>codesign --verify --deep --strict</code> 校验。如果变量只配置在 <code>~/.zshrc</code>，非交互构建时需通过 <code>zsh -ic</code> 加载。签名身份发生变化后，可能需要重新授予输入监控和辅助功能权限。</p><p>本地构建不等于已通过 Apple 公证的分发版本。分发签名、公证和公开下载不在本指南范围内。</p></article>
       <article id="pair"><h2>03 · 配对与授权</h2><ol><li>打开 Mac「系统设置 → 蓝牙」，按遥控器自身的配对说明完成配对。</li><li>启动 RcHarness，在「设置 → 权限」中按提示允许「蓝牙」「输入监控」和「辅助功能」。</li><li>点击 App 右上角设备卡片，或进入「连接与语音 → 更换遥控器…」，选择对应型号。检查设备状态，并打开「启用遥控器映射」。</li><li>在「按键」页尝试方向键、确认、返回和自定义快捷键，确认按键响应符合预期。</li></ol><p>RcHarness 关闭主窗口后仍会驻留菜单栏。点击菜单栏图标可重新打开主面板。更换遥控器型号时，会加载该型号独立保存的全局按键、键位方案与 Harness 绑定。</p></article>
       <article id="voice"><h2>04 · 配置语音输入</h2><p>RcHarness 负责把遥控器的声音传到 Mac，语音输入工具负责识别文字。两者需要分别完成配置。</p><ol><li>在「连接与语音」中安装随 App 提供的麦克风组件。首次安装需要管理员授权。</li><li>在语音输入工具中，将麦克风明确选择为「RcHarness 遥控器麦克风」。Chromecast 可在「按键 → 语音键」选择点按或按住模式，小米遥控器仅支持按住模式。</li><li>在 RcHarness 的「按键」页点击语音键卡片，配置与语音输入工具一致的长按快捷键。「设置 → 全局按键」用于选择普通全局实体按键，语音键的快捷键在按键页单独配置。</li><li>允许 RcHarness 与语音输入工具所需的麦克风权限，在真实输入框中测试「按下 → 语音浮窗 → 识别文字 → 松开结束」。</li></ol><p>小米遥控器松手后停止收音，仅可启用「长按」模式；Chromecast 支持「长按」和「点按」两种模式。点按模式由两次短按开始与结束语音输入，快捷键需与目标语音工具一致。</p><h3>微信输入法参考配置</h3><p>可将微信输入法的「按住说话」与 RcHarness 的语音触发按键都设为「地球键（Fn）」，麦克风选择「RcHarness 遥控器麦克风」。Chromecast 若使用点按模式，请在语音工具中同时配置点按快捷键。语音浮窗出现且产生识别文字，才表示完整链路已就绪。</p><p>RcHarness 不会替你安装第三方语音输入工具，也不会自动更改系统默认输入或输出设备。不同工具的快捷键行为与兼容性需实际测试。</p></article>
-      <article id="workflow"><h2>05 · 定义你的工作流</h2><ul><li><strong>按键：</strong>对照遥控器图片与按键连线，为普通按键配置单击、双击、长按，录制快捷键或绑定常用语、鼠标动作和组合动作。</li><li><strong>键位方案：</strong>新建、复制、重命名当前遥控器的整套按键配置，并查看 Harness 绑定状态。每个型号的方案分别保存；默认方案、内置应用同名方案及已绑定的方案不可删除。</li><li><strong>Harness：</strong>为 Codex、Claude、Cursor、DeepSeek、WorkBuddy、OpenCode 等内置应用或自行添加的应用绑定当前遥控器的方案。同一方案可被多个应用共享；列表同时显示运行状态。停用会保留绑定；移除 Harness 会解除绑定，但保留按键方案和应用本身。</li><li><strong>运行列表：</strong>默认单击电源键，打开已启用且正在运行的 Harness。用左右方向键选择、确认 OK 切换应用；按返回或主页关闭列表。电源键默认双击未设置，长按进入原生模式；小米菜单键或 Chromecast 输入源键负责切换应用，其他全局按键可自行调整。应用升级后可在「设置」点击「检查更新…」完成校验和安装。</li><li><strong>常用语：</strong>从「按键」页底部进入，管理内置的 16 条双语提示语，分别编辑两组标题与正文，再绑定到遥控器按键。详见下节。</li><li><strong>组合动作：</strong>按顺序加入受支持的本机动作与等待时间，再绑定到按键。</li><li><strong>配置备份：</strong>在「设置」中导出配置，备份各遥控器的全局按键、键位方案、Harness 应用与绑定，以及组合动作、常用语和按键分配。导入时先核对预览，再确认替换；每次替换前自动保留一份配置，可通过「恢复替换前配置」恢复。外观、启动选项、音频设置和使用统计不在导入范围内。</li></ul><p>电源等普通全局按键与语音全局按键，对当前遥控器的所有方案和 Harness 生效；不同遥控器分别保存。前台应用匹配到已启用的 Harness 时，应用会自动加载绑定方案；未匹配时使用默认方案。</p></article>
+      <article id="workflow"><h2>05 · 定义你的工作流</h2><ul><li><strong>按键：</strong>对照遥控器图片与按键连线，为普通按键配置单击、双击、长按，录制快捷键或绑定常用语、鼠标动作和组合动作。</li><li><strong>键位方案：</strong>新建、复制、重命名当前遥控器的整套按键配置，并查看 Harness 绑定状态。每个型号的方案分别保存；默认方案、内置应用同名方案及已绑定的方案不可删除。</li><li><strong>Harness：</strong>为 ChatGPT、Claude、Cursor、DeepSeek、WorkBuddy、OpenCode 等内置应用或自行添加的应用绑定当前遥控器的方案。同一方案可被多个应用共享；列表同时显示运行状态。停用会保留绑定；移除 Harness 会解除绑定，但保留按键方案和应用本身。</li><li><strong>运行列表：</strong>默认单击电源键，打开已启用且正在运行的 Harness。用左右方向键选择、确认 OK 切换应用；按返回或主页关闭列表。电源键默认双击未设置，长按进入原生模式；小米菜单键或 Chromecast 输入源键负责切换应用，其他全局按键可自行调整。应用升级后可在「设置」点击「检查更新…」完成校验和安装。</li><li><strong>常用语：</strong>从「按键」页底部进入，管理内置的 16 条双语提示语，分别编辑两组标题与正文，再绑定到遥控器按键。详见下节。</li><li><strong>组合动作：</strong>按顺序加入受支持的本机动作与等待时间，再绑定到按键。</li><li><strong>配置备份：</strong>在「设置」中导出配置，备份各遥控器的全局按键、键位方案、Harness 应用与绑定，以及组合动作、常用语和按键分配。导入时先核对预览，再确认替换；每次替换前自动保留一份配置，可通过「恢复替换前配置」恢复。外观、启动选项、音频设置和使用统计不在导入范围内。</li></ul><p>电源等普通全局按键与语音全局按键，对当前遥控器的所有方案和 Harness 生效；不同遥控器分别保存。前台应用匹配到已启用的 Harness 时，应用会自动加载绑定方案；未匹配时使用默认方案。</p></article>
       <article id="phrases">
         <h2>06 · 配置常用语</h2>
         <p>常用语是「按键」下的子页面，从按键映射底部的「常用语」进入。内置 16 条中英文提示语，可编辑、删除和排序；每条的两组内容也可改为任意语言。</p>
